@@ -15,7 +15,12 @@ public class AllocationExample {
 
         createTabWaitAndLaunchGC(toMiB(1));     // 1MiB
         createTabWaitAndLaunchGC(toMiB(10));
-        for (int i = 1; i <= 10; i++) {
+        createTabWaitAndLaunchGC(toMiB(100));
+        createTabWaitAndLaunchGC(toMiB(200));
+        createTabWaitAndLaunchGC(toMiB(250));
+        createTabWaitAndLaunchGC(toMiB(270));
+        createTabWaitAndLaunchGC(toMiB(272));
+        for (int i = 3; i <= 10; i++) {
             createTabWaitAndLaunchGC(toMiB(100 * i));
         }
     }
