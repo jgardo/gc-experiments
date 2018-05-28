@@ -6,23 +6,29 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 public class AllocationExample {
-    // launch with VM params: -Xmx1024m -Xms1024m -XX:+UseSerialGC
+    // launch with VM params: -Xmx1024m -Xms1024m -XX:+UseSerialGC -XX:+PrintGCDetails -verbose:gc -Xloggc:gc.log
     public static void main(String[] args) throws InterruptedException {
         // fetching some data
         System.out.println("4 seconds to launch visualVm");
         System.gc();
         Thread.sleep(4000);
 
-        createTabWaitAndLaunchGC(toMiB(1));     // 1MiB
+        createTabWaitAndLaunchGC(toMiB(1));
         createTabWaitAndLaunchGC(toMiB(10));
         createTabWaitAndLaunchGC(toMiB(100));
         createTabWaitAndLaunchGC(toMiB(200));
         createTabWaitAndLaunchGC(toMiB(250));
-        createTabWaitAndLaunchGC(toMiB(270));
-        createTabWaitAndLaunchGC(toMiB(272));
-        for (int i = 3; i <= 10; i++) {
-            createTabWaitAndLaunchGC(toMiB(100 * i));
-        }
+        createTabWaitAndLaunchGC(toMiB(270));   // 1
+        createTabWaitAndLaunchGC(toMiB(272));   // 2
+        createTabWaitAndLaunchGC(toMiB(300));   // 3
+        createTabWaitAndLaunchGC(toMiB(400));   // 4
+        createTabWaitAndLaunchGC(toMiB(500));   // 5
+        createTabWaitAndLaunchGC(toMiB(600));   // 6
+        createTabWaitAndLaunchGC(toMiB(700));   // 7
+        createTabWaitAndLaunchGC(toMiB(800));   // 8
+        createTabWaitAndLaunchGC(toMiB(900));   // 9
+        createTabWaitAndLaunchGC(toMiB(1000));  // 10
+
     }
 
     // what's KiB - https://pl.wikipedia.org/wiki/Kilobajt
