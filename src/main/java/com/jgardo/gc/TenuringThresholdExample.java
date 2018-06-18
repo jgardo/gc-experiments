@@ -1,5 +1,7 @@
 package com.jgardo.gc;
 
+import java.lang.ref.SoftReference;
+import java.lang.ref.WeakReference;
 import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,7 +10,9 @@ import java.util.Random;
 public class TenuringThresholdExample {
     private static final Random RANDOM = new Random();
 
-    private static final List<byte[]> tab = new LinkedList<byte[]>();
+    private static final List<byte[]> TAB = new LinkedList<>();
+//    private static final List<SoftReference<byte[]>> TAB = new LinkedList<>();
+//    private static final List<WeakReference<byte[]>> TAB = new LinkedList<>();
 
     // launch with VM params: -Xmx1024m -Xms1024m -XX:+UseSerialGC
     public static void main(String[] args) throws InterruptedException {
@@ -22,9 +26,9 @@ public class TenuringThresholdExample {
             for (int i = 0; i< 1000000; i++) {
                 createGarbage();
             }
-            tab.add(createWhatever(toMiB(RANDOM.nextInt(10))));
-//            tab.add(createWhatever(toMiB(4)));
-//            tab.add(createWhatever(toMiB(10)));
+            TAB.add((createWhatever(toMiB(RANDOM.nextInt(10)))));
+//            TAB.add(new SoftReference<byte[]>(createWhatever(toMiB(RANDOM.nextInt(10)))));
+//            TAB.add(new WeakReference<byte[]>(createWhatever(toMiB(RANDOM.nextInt(10)))));
             System.out.println("Iteration " + a++);
 
         }
